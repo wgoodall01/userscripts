@@ -4,24 +4,27 @@
 // @version      0.1
 // @description  try to take over the world!
 // @author       You
-// @match        https://moodle.mka.org/
+// @match        https://moodle.mka.org/*
 // @grant        none
 // ==/UserScript==
 
 (function() {
     'use strict';
 
-    document.querySelector(".box.generalbox.sitetopic").innerHTML = `
+    // Replace homepage links w/ dispatch
+    const mainPageContainer = document.querySelector(".box.generalbox.sitetopic")
+    if(mainPageContainer !== null){
+        mainPageContainer.innerHTML = `
 <div class="link-container">
   <div class="link-group left">
-    <a href="https://moodle.mka.org/course/view.php?id=4214"><div class="chem">Chemistry</div></a>
-    <a href="https://moodle.mka.org/course/view.php?id=4150"><div class="phys">Physics</div></a>
-    <a href="https://moodle.mka.org/course/view.php?id=4162"><div class="calc">Calculus</div></a>
+    <a href="https://moodle.mka.org/course/view.php?id=4214"><div class="color_chem">Chemistry</div></a>
+    <a href="https://moodle.mka.org/course/view.php?id=4150"><div class="color_phys">Physics</div></a>
+    <a href="https://moodle.mka.org/course/view.php?id=4162"><div class="color_calc">Calculus</div></a>
   </div>
   <div class="link-group right">
-    <a href="https://moodle.mka.org/course/view.php?id=2808"><div class="eng">English</div></a>
-    <a href="https://moodle.mka.org/course/view.php?id=4169"><div class="spaan">Spanish</div></a>
-    <a href="https://moodle.mka.org/course/view.php?id=3774"><div class="hist">History</div></a>
+    <a href="https://moodle.mka.org/course/view.php?id=2808"><div class="color_eng">English</div></a>
+    <a href="https://moodle.mka.org/course/view.php?id=4169"><div class="color_spaan">Spanish</div></a>
+    <a href="https://moodle.mka.org/course/view.php?id=3774"><div class="color_hist">History</div></a>
   </div>
 </div>
 
@@ -77,13 +80,52 @@
     margin-left:-10px;
 }
 
-.link-container .chem{background-color:#27ae60;}
-.link-container .phys{background-color:#8e44ad;}
-.link-container .calc{background-color:#7f8c8d;}
-
-.link-container .eng{background-color:#c0392b;}
-.link-container .spaan{background-color:#f1c40f; color:black !important;}
-.link-container .hist{background-color:#2980b9;}
 </style>
 `;
+    }
+
+    // Replace navbar dropdown with useful links.
+    const navbarContainer = document.querySelector(".menus");
+    if(navbarContainer !== null){
+        navbarContainer.innerHTML = `
+
+<style>
+.menus{
+text-align:right;
+line-height:88px;
+font-size:18px;
+}
+
+.menus a.clink{
+margin-right:10px;
+padding:10px;
+color:white;
+border-radius:4px;
+transition:0.2s;
+}
+</style>
+
+<a class="clink color_chem"  href="https://moodle.mka.org/course/view.php?id=4214">Chemistry</a>
+<a class="clink color_phys"  href="https://moodle.mka.org/course/view.php?id=4150">Physics</a>
+<a class="clink color_calc"  href="https://moodle.mka.org/course/view.php?id=4162">Calculus</a>
+<a class="clink color_eng"   href="https://moodle.mka.org/course/view.php?id=2808">English</a>
+<a class="clink color_spaan" href="https://moodle.mka.org/course/view.php?id=4169">Spanish</a>
+<a class="clink color_hist"  href="https://moodle.mka.org/course/view.php?id=3774">History</a>
+`;
+    }
+
+    // Append common styles.
+    const styleEl = document.createElement("div");
+    styleEl.innerHTML = `<style>
+.color_chem{background-color:#27ae60;}
+.color_phys{background-color:#8e44ad;}
+.color_calc{background-color:#7f8c8d;}
+.color_eng{background-color:#c0392b;}
+.color_spaan{background-color:#f1c40f; color:black !important;}
+.color_hist{background-color:#2980b9;}
+</style>`;
+    document.body.appendChild(styleEl);
+
+    console.log("[Moodle Dispatch] Loaded from userscript.");
+
 })();
