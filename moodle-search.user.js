@@ -9,10 +9,10 @@
 // ==/UserScript==
 
 (function() {
-    'use strict';
+  'use strict';
 
-    const main = document.createElement("div");
-    main.innerHTML = `
+  const main = document.createElement('div');
+  main.innerHTML = `
 
 <style>
 .sch_container{
@@ -58,40 +58,38 @@
 </div>
 
 `;
-    if(document.querySelector("#sch_input") == null){
-        document.querySelector(".content").prepend(main);
+  if (document.querySelector('#sch_input') == null) {
+    document.querySelector('.content').prepend(main);
 
-        const matches = (text, filter) => {
-            filter = filter.trim().toLowerCase();
-            text = text.trim().toLowerCase();
-            if(filter.length === 0){
-                return false;
-            } else{
-                const tokens = filter.split(" ");
-                for(let t of tokens){
-                    if(text.indexOf(t) == -1){return false;}
-                }
-                return true;
-            }
-        };
+    const matches = (text, filter) => {
+      filter = filter.trim().toLowerCase();
+      text = text.trim().toLowerCase();
+      if (filter.length === 0) {
+        return false;
+      } else {
+        const tokens = filter.split(' ');
+        for (let t of tokens) {
+          if (text.indexOf(t) == -1) {
+            return false;
+          }
+        }
+        return true;
+      }
+    };
 
-        const input = document.querySelector("#sch_input");
-        const results = document.querySelector("#sch_results");
-        input.oninput = (e) => {
-            const filter = e.target.value;
-            const allMods = document.querySelectorAll(".activity .activityinstance");
-            results.innerHTML = "";
-            allMods.forEach(e => {
-                const text = e.textContent;
-                if(matches(text, filter)){
-                    results.append(e.cloneNode(true));
-                }
-            });
-        };
-        console.log("Script loaded");
-    }
+    const input = document.querySelector('#sch_input');
+    const results = document.querySelector('#sch_results');
+    input.oninput = e => {
+      const filter = e.target.value;
+      const allMods = document.querySelectorAll('.activity .activityinstance');
+      results.innerHTML = '';
+      allMods.forEach(e => {
+        const text = e.textContent;
+        if (matches(text, filter)) {
+          results.append(e.cloneNode(true));
+        }
+      });
+    };
+    console.log('[Moodle Search] Loaded from Userscript.');
+  }
 })();
-
-
-
-
