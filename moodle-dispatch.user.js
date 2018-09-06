@@ -17,14 +17,14 @@
         mainPageContainer.innerHTML = `
 <div class="link-container">
   <div class="link-group left">
-    <a href="https://moodle.mka.org/course/view.php?id=4214"><div class="color_chem">Chemistry</div></a>
-    <a href="https://moodle.mka.org/course/view.php?id=4150"><div class="color_phys">Physics</div></a>
-    <a href="https://moodle.mka.org/course/view.php?id=4162"><div class="color_calc">Calculus</div></a>
+    <a href="https://moodle.mka.org/course/view.php?id=4256"><div class="color_hist">History</div></a>
+    <a href="https://moodle.mka.org/course/view.php?id=4087"><div class="color_dsa">DSA</div></a>
+    <a href="https://moodle.mka.org/course/view.php?id=4249"><div class="color_phys">Physics</div></a>
   </div>
   <div class="link-group right">
-    <a href="https://moodle.mka.org/course/view.php?id=2810"><div class="color_eng">English</div></a>
-    <a href="https://moodle.mka.org/course/view.php?id=4169"><div class="color_spaan">Spanish</div></a>
-    <a href="https://moodle.mka.org/course/view.php?id=3774"><div class="color_hist">History</div></a>
+    <a href="https://moodle.mka.org/course/view.php?id=4319"><div class="color_eng">English</div></a>
+    <a href="https://moodle.mka.org/course/view.php?id=4082"><div class="color_calc">Calculus</div></a>
+    <a href="https://moodle.mka.org/course/view.php?id=4081"><div class="color_nt">NT&C</div></a>
   </div>
 </div>
 
@@ -105,23 +105,24 @@ transition:0.2s;
 }
 </style>
 
-<a class="clink color_chem"  href="https://moodle.mka.org/course/view.php?id=4214">Chemistry</a>
-<a class="clink color_phys"  href="https://moodle.mka.org/course/view.php?id=4150">Physics</a>
-<a class="clink color_calc"  href="https://moodle.mka.org/course/view.php?id=4162">Calculus</a>
-<a class="clink color_eng"   href="https://moodle.mka.org/course/view.php?id=2810">English</a>
-<a class="clink color_spaan" href="https://moodle.mka.org/course/view.php?id=4169">Spanish</a>
-<a class="clink color_hist"  href="https://moodle.mka.org/course/view.php?id=3774">History</a>
+
+    <a class="clink color_nt"   href="https://moodle.mka.org/course/view.php?id=4081">NT&C</a>
+    <a class="clink color_phys" href="https://moodle.mka.org/course/view.php?id=4249">Physics</a>
+    <a class="clink color_calc" href="https://moodle.mka.org/course/view.php?id=4082">Calculus</a>
+    <a class="clink color_eng"  href="https://moodle.mka.org/course/view.php?id=4319">English</a>
+    <a class="clink color_dsa"  href="https://moodle.mka.org/course/view.php?id=4087">DSA</a>
+    <a class="clink color_hist" href="https://moodle.mka.org/course/view.php?id=4256">History</a>
 `;
     }
 
     // Append common styles.
     const styleEl = document.createElement("div");
     styleEl.innerHTML = `<style>
-.color_chem{background-color:#27ae60;}
+.color_nt{background-color:#27ae60;}
 .color_phys{background-color:#8e44ad;}
 .color_calc{background-color:#7f8c8d;}
 .color_eng{background-color:#c0392b;}
-.color_spaan{background-color:#f1c40f; color:black !important;}
+.color_dsa{background-color:#f1c40f; color:black !important;}
 .color_hist{background-color:#2980b9;}
 </style>`;
     document.body.appendChild(styleEl);
