@@ -106,12 +106,12 @@ transition:0.2s;
 </style>
 
 
-    <a class="clink color_nt"   href="https://moodle.mka.org/course/view.php?id=4081">NT&C</a>
-    <a class="clink color_phys" href="https://moodle.mka.org/course/view.php?id=4249">Physics</a>
-    <a class="clink color_calc" href="https://moodle.mka.org/course/view.php?id=4082">Calculus</a>
-    <a class="clink color_eng"  href="https://moodle.mka.org/course/view.php?id=4319">English</a>
-    <a class="clink color_dsa"  href="https://moodle.mka.org/course/view.php?id=4087">DSA</a>
     <a class="clink color_hist" href="https://moodle.mka.org/course/view.php?id=4256">History</a>
+    <a class="clink color_dsa"  href="https://moodle.mka.org/course/view.php?id=4087">DSA</a>
+    <a class="clink color_phys" href="https://moodle.mka.org/course/view.php?id=4249">Physics</a>
+    <a class="clink color_eng"  href="https://moodle.mka.org/course/view.php?id=4319">English</a>
+    <a class="clink color_calc" href="https://moodle.mka.org/course/view.php?id=4082">Calculus</a>
+    <a class="clink color_nt"   href="https://moodle.mka.org/course/view.php?id=4081">NT&C</a>
 `;
     }
 
