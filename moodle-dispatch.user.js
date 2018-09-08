@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Moodle Dispatch
 // @namespace    http://tampermonkey.net/
-// @version      0.2
+// @version      0.3
 // @description  try to take over the world!
 // @author       You
 // @match        https://moodle.mka.org/*
@@ -11,20 +11,46 @@
 (function() {
     'use strict';
 
+    // yes this is a massive XSS.
+    // it's also trusted input. don't put sketchy things here.
+    const links = {
+        history: {name: "History", courseId: 4256},
+        dsa: {name: "DSA", courseId: 4087},
+        physics: {name: "Physics", courseId: 4249},
+        english: {name: "English", courseId: 4319},
+        calculus: {name: "Calculus", courseId: 4082},
+        numberTheory: {name: "NT&C", courseId: 4081}
+    };
+
+    // Common color styles for links.
+    const styleEl = document.createElement("div");
+    styleEl.innerHTML = `<style>
+.dispatch-link[data-course="numberTheory"]{background-color:#27ae60;}
+.dispatch-link[data-course="physics"]{background-color:#8e44ad;}
+.dispatch-link[data-course="calculus"]{background-color:#7f8c8d;}
+.dispatch-link[data-course="english"]{background-color:#c0392b;}
+.dispatch-link[data-course="dsa"]{background-color:#f1c40f; color:black !important;}
+.dispatch-link[data-course="history"]{background-color:#2980b9;}
+</style>`;
+    document.body.appendChild(styleEl);
+
+    const linkBlob = (id) => `<a href="https://moodle.mka.org/course/view.php?id=${links[id].courseId}"><div class="dispatch-link" data-course="${id}">${links[id].name}</div></a>`
+    const headerBlob = (id) => `<a class="clink dispatch-link" data-course="${id}" href="https://moodle.mka.org/course/view.php?id=${links[id].courseId}">${links[id].name}</a>`
+
     // Replace homepage links w/ dispatch
     const mainPageContainer = document.querySelector(".box.generalbox.sitetopic")
     if(mainPageContainer !== null){
         mainPageContainer.innerHTML = `
 <div class="link-container">
   <div class="link-group left">
-    <a href="https://moodle.mka.org/course/view.php?id=4256"><div class="color_hist">History</div></a>
-    <a href="https://moodle.mka.org/course/view.php?id=4087"><div class="color_dsa">DSA</div></a>
-    <a href="https://moodle.mka.org/course/view.php?id=4249"><div class="color_phys">Physics</div></a>
+    ${linkBlob('history')}
+    ${linkBlob('dsa')}
+    ${linkBlob('physics')}
   </div>
   <div class="link-group right">
-    <a href="https://moodle.mka.org/course/view.php?id=4319"><div class="color_eng">English</div></a>
-    <a href="https://moodle.mka.org/course/view.php?id=4082"><div class="color_calc">Calculus</div></a>
-    <a href="https://moodle.mka.org/course/view.php?id=4081"><div class="color_nt">NT&C</div></a>
+    ${linkBlob('english')}
+    ${linkBlob('calculus')}
+    ${linkBlob('numberTheory')}
   </div>
 </div>
 
@@ -105,27 +131,14 @@ transition:0.2s;
 }
 </style>
 
-
-    <a class="clink color_hist" href="https://moodle.mka.org/course/view.php?id=4256">History</a>
-    <a class="clink color_dsa"  href="https://moodle.mka.org/course/view.php?id=4087">DSA</a>
-    <a class="clink color_phys" href="https://moodle.mka.org/course/view.php?id=4249">Physics</a>
-    <a class="clink color_eng"  href="https://moodle.mka.org/course/view.php?id=4319">English</a>
-    <a class="clink color_calc" href="https://moodle.mka.org/course/view.php?id=4082">Calculus</a>
-    <a class="clink color_nt"   href="https://moodle.mka.org/course/view.php?id=4081">NT&C</a>
+    ${headerBlob('history')}
+    ${headerBlob('dsa')}
+    ${headerBlob('physics')}
+    ${headerBlob('english')}
+    ${headerBlob('calculus')}
+    ${headerBlob('numberTheory')}
 `;
     }
-
-    // Append common styles.
-    const styleEl = document.createElement("div");
-    styleEl.innerHTML = `<style>
-.color_nt{background-color:#27ae60;}
-.color_phys{background-color:#8e44ad;}
-.color_calc{background-color:#7f8c8d;}
-.color_eng{background-color:#c0392b;}
-.color_dsa{background-color:#f1c40f; color:black !important;}
-.color_hist{background-color:#2980b9;}
-</style>`;
-    document.body.appendChild(styleEl);
 
     console.log("[Moodle Dispatch] Loaded from userscript.");
 
