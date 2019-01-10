@@ -17,7 +17,7 @@
         history: {name: "History", courseId: 4256},
         dsa: {name: "DSA", courseId: 4087},
         physics: {name: "Physics", courseId: 4249},
-        english: {name: "English", courseId: 4319},
+        english: {name: "English", courseId: 2828},
         calculus: {name: "Calculus", courseId: 4082},
         numberTheory: {name: "NT&C", courseId: 4081}
     };
